@@ -11,11 +11,12 @@ import {
 } from "lucide-react";
 import hero from "@/assets/hero-brownie.jpg";
 import cakeImg from "@/assets/brownie-cake.jpg";
-import storyImg from "@/assets/story.jpg";
+import founderImg from "@/assets/founder.jpg";
 import giftingImg from "@/assets/gifting.jpg";
 import ingredientsImg from "@/assets/ingredients.jpg";
 import { Reveal } from "@/components/Reveal";
 import { flavours } from "@/lib/flavours";
+import { WHATSAPP_ORDER_URL, WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -58,29 +59,31 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="grain absolute inset-0 opacity-60" aria-hidden />
-      <div className="container-prose relative grid items-center gap-12 pt-16 pb-20 md:grid-cols-[1.05fr_1fr] md:pt-24 md:pb-28">
+      <div className="container-prose relative grid items-center gap-10 pt-12 pb-16 md:grid-cols-[1.05fr_1fr] md:pt-24 md:pb-28">
         <div>
           <Reveal>
             <p className="divider-gold eyebrow">Pune · Made fresh</p>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="mt-6 font-display text-[clamp(2.6rem,6vw,4.75rem)] leading-[1.02] tracking-tight">
+            <h1 className="mt-5 font-display text-[clamp(2.1rem,8vw,4.75rem)] leading-[1.05] tracking-tight md:mt-6">
               Brownies made
               <span className="italic text-[color:var(--chocolate)]"> differently</span>.
             </h1>
           </Reveal>
           <Reveal delay={240}>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:mt-7 md:text-lg">
               Made with <em className="not-italic font-medium text-foreground">Ragi, Foxtail Millet,
               Oats & Buckwheat.</em> Sweetened with jaggery. Crafted with premium couverture chocolate.
             </p>
           </Reveal>
           <Reveal delay={360}>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link to="/order" className="btn-primary">Order Now <ArrowRight className="h-4 w-4" /></Link>
-              <Link to="/brownies" className="btn-outline">View Menu</Link>
-              <Link to="/order" search={{ type: "Bulk / Corporate Order" } as never} className="btn-outline">Request a Quote</Link>
-              <Link to="/brownie-cakes" className="btn-outline">Customise Your Cake</Link>
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap md:mt-9">
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">
+                Order Now <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link to="/brownies" className="btn-outline w-full sm:w-auto">View Menu</Link>
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Request a Quote</a>
+              <Link to="/brownie-cakes" className="btn-outline w-full sm:w-auto">Customise Your Cake</Link>
             </div>
           </Reveal>
           <Reveal delay={500}>
@@ -254,9 +257,9 @@ function Collections() {
                 </ul>
                 <div className="mt-auto pt-8">
                   {c.available ? (
-                    <Link to="/order" className="inline-flex items-center gap-2 text-sm font-medium tracking-wide text-[color:var(--gold-soft)] hover:text-[color:var(--gold)]">
+                    <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium tracking-wide text-[color:var(--gold-soft)] hover:text-[color:var(--gold)]">
                       Order the classic <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    </a>
                   ) : (
                     <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Coming soon</span>
                   )}
@@ -347,9 +350,9 @@ function BrownieCakes() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/brownie-cakes" className="btn-primary">See Cakes</Link>
-            <Link to="/order" className="btn-outline">Customise Yours</Link>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link to="/brownie-cakes" className="btn-primary w-full sm:w-auto">See Cakes</Link>
+            <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Customise Yours</a>
           </div>
         </Reveal>
       </div>
@@ -404,38 +407,44 @@ function ComparisonTable() {
 function Story() {
   return (
     <section className="section">
-      <div className="container-prose grid items-center gap-12 md:grid-cols-[1fr_1.1fr]">
+      <div className="container-prose grid items-center gap-10 md:grid-cols-[1fr_1.1fr] md:gap-12">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem]">
+          <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem]">
             <img
-              src={storyImg}
-              alt="A mother arranging fresh-baked brownies"
+              src={founderImg}
+              alt="Ankita Gaikwad, founder of Grain Crumbs, holding a fresh tray of millet brownies"
               loading="lazy"
-              width={1200}
-              height={1400}
+              width={1024}
+              height={1280}
               className="h-full w-full object-cover"
             />
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-[color:var(--gold)]/30" />
           </div>
         </Reveal>
         <Reveal delay={150}>
           <p className="eyebrow">Our Story</p>
-          <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl md:text-5xl">
             Made for my daughter.
             <span className="block italic text-[color:var(--chocolate)]">Loved by everyone.</span>
           </h2>
-          <div className="mt-6 space-y-5 text-muted-foreground">
+          <p className="mt-5 text-sm uppercase tracking-[0.25em] text-[color:var(--gold)]">
+            Founder · Ankita Gaikwad
+          </p>
+          <div className="mt-5 space-y-4 text-muted-foreground md:space-y-5">
             <p>
-              Grain Crumbs started when I wanted treats made with better ingredients for my
-              toddler. What began as a personal journey soon became something friends and
-              family kept asking for.
+              Grain Crumbs started when I wanted treats made with better ingredients
+              for my toddler. What began as a personal journey soon became something
+              friends and family kept asking for.
             </p>
             <p>
-              Today, every batch is still made with the same care — small, hand-finished,
-              and never compromised.
+              Today, every batch is still made with the same care.
+            </p>
+            <p className="font-display text-xl text-foreground md:text-2xl">
+              — Ankita Gaikwad
             </p>
           </div>
-          <div className="mt-8">
-            <Link to="/about" className="btn-outline">Read the full story</Link>
+          <div className="mt-7 md:mt-8">
+            <Link to="/about" className="btn-outline w-full sm:w-auto">Read the full story</Link>
           </div>
         </Reveal>
       </div>
@@ -498,9 +507,9 @@ function Gifting() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/gifting" className="btn-primary">Explore Hampers</Link>
-            <Link to="/order" className="btn-outline">Request a Quote</Link>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link to="/gifting" className="btn-primary w-full sm:w-auto">Explore Hampers</Link>
+            <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Request a Quote</a>
           </div>
         </Reveal>
         <Reveal delay={150}>
@@ -538,7 +547,7 @@ function FAQ() {
           <h2 className="mt-3 font-display text-4xl md:text-5xl">Good to know.</h2>
           <p className="mt-4 text-muted-foreground">
             Anything else? Message us on{" "}
-            <a href="https://wa.me/918208257574" className="underline-link text-foreground">WhatsApp</a> —
+            <a href={WHATSAPP_PLAIN_URL} target="_blank" rel="noreferrer" className="underline-link text-foreground">WhatsApp</a> —
             we usually reply within an hour.
           </p>
         </Reveal>
@@ -577,9 +586,9 @@ function CTA() {
               Tell us what you'd like and when. We'll handle the rest — pickup from Kharadi
               or delivered fresh across Pune.
             </p>
-            <div className="relative mt-9 flex flex-wrap justify-center gap-3">
-              <Link to="/order" className="btn-gold">Place an order</Link>
-              <a href="https://wa.me/918208257574" className="btn-outline border-[color:var(--cream)]/40 text-[color:var(--cream)] hover:bg-[color:var(--cream)] hover:text-[color:var(--chocolate-dark)]">
+            <div className="relative mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-gold w-full sm:w-auto">Place an order</a>
+              <a href={WHATSAPP_PLAIN_URL} target="_blank" rel="noreferrer" className="btn-outline w-full border-[color:var(--cream)]/40 text-[color:var(--cream)] hover:bg-[color:var(--cream)] hover:text-[color:var(--chocolate-dark)] sm:w-auto">
                 WhatsApp Us
               </a>
             </div>
