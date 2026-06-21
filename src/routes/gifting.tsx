@@ -92,7 +92,7 @@ function Page() {
               <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-gold w-full sm:w-auto">
                 Request a Quote
               </a>
-              <a href="mailto:hello@graincrumbs.in" className="btn-outline w-full border-[color:var(--cream)]/40 text-[color:var(--cream)] hover:bg-[color:var(--cream)] hover:text-[color:var(--chocolate-dark)] sm:w-auto">
+              <a href="mailto:thegraincrumbs@gmail.com" className="btn-outline w-full border-[color:var(--cream)]/40 text-[color:var(--cream)] hover:bg-[color:var(--cream)] hover:text-[color:var(--chocolate-dark)] sm:w-auto">
                 Email Us
               </a>
             </div>
