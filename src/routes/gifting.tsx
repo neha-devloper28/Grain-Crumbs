@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Gift, Building2, HeartHandshake, Sparkles, Package } from "lucide-react";
 import gifting from "@/assets/gifting.jpg";
 import { Reveal } from "@/components/Reveal";
