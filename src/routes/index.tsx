@@ -11,7 +11,8 @@ import {
 } from "lucide-react";
 import hero from "@/assets/hero-brownie.jpg";
 import cakeImg from "@/assets/brownie-cake.jpg";
-import founderImg from "@/assets/founder.jpg";
+import founderAsset from "@/assets/founder-baking.jpg.asset.json";
+const founderImg = founderAsset.url;
 import giftingImg from "@/assets/gifting.jpg";
 import ingredientsImg from "@/assets/ingredients.jpg";
 import { Reveal } from "@/components/Reveal";
