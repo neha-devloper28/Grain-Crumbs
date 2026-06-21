@@ -52,7 +52,7 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--gold)]" />
-              <a href="mailto:hello@graincrumbs.in" className="underline-link">hello@graincrumbs.in</a>
+              <a href="mailto:thegraincrumbs@gmail.com" className="underline-link">thegraincrumbs@gmail.com</a>
             </li>
           </ul>
         </div>

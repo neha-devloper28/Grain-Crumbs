@@ -19,7 +19,7 @@ const channels = [
   { icon: MessageCircle, label: "WhatsApp", value: "+91 82082 57574", href: WHATSAPP_ORDER_URL, primary: true },
   { icon: Phone, label: "Call", value: "+91 82082 57574", href: "tel:+918208257574" },
   { icon: Instagram, label: "Instagram", value: "@graincrumbs", href: "https://instagram.com/graincrumbs" },
-  { icon: Mail, label: "Email", value: "hello@graincrumbs.in", href: "mailto:hello@graincrumbs.in" },
+  { icon: Mail, label: "Email", value: "thegraincrumbs@gmail.com", href: "mailto:thegraincrumbs@gmail.com" },
   { icon: MapPin, label: "Visit", value: "Kharadi, Pune", href: "https://maps.google.com/?q=Kharadi+Pune" },
   { icon: Clock, label: "Hours", value: "Mon – Sat · 10am – 8pm", href: "#" },
 ];
