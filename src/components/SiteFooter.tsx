@@ -61,8 +61,12 @@ export function SiteFooter() {
       <div className="border-t border-border/70">
         <div className="container-prose flex flex-col items-center justify-between gap-3 py-6 text-xs text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Grain Crumbs. Handcrafted in Pune.</p>
-          <p className="tracking-[0.25em] uppercase">Made differently · loved deeply</p>
+          <div className="flex items-center gap-4">
+            <Link to="/admin/login" className="tracking-[0.25em] uppercase hover:text-foreground">Admin</Link>
+            <p className="tracking-[0.25em] uppercase">Made differently · loved deeply</p>
+          </div>
         </div>
+
       </div>
     </footer>
   );
