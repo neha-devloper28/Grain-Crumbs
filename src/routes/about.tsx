@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import founder from "@/assets/founder.jpg";
+import founderAsset from "@/assets/founder-baking.jpg.asset.json";
+const founder = founderAsset.url;
 import ingredients from "@/assets/ingredients.jpg";
 import { Reveal } from "@/components/Reveal";
 
