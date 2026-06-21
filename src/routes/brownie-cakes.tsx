@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Cake, Sparkles, MessageSquare, Image as ImageIcon } from "lucide-react";
 import cake from "@/assets/brownie-cake.jpg";
 import walnut from "@/assets/brownie-chocolate-walnut.jpg";
@@ -46,7 +46,7 @@ function Page() {
               cake that's rich, indulgent and thoughtfully made — without a grain of maida.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">Customise Your Cake</a>
+              <Link to="/order" className="btn-primary w-full sm:w-auto">Customise Your Cake</Link>
               <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Chat on WhatsApp</a>
             </div>
           </Reveal>

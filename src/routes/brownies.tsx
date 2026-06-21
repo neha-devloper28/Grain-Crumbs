@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { flavours } from "@/lib/flavours";
 import { Reveal } from "@/components/Reveal";
-import { WHATSAPP_ORDER_URL, WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
+import { WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/brownies")({
   head: () => ({
@@ -57,7 +57,7 @@ function BrowniesPage() {
                     ))}
                   </ul>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">Order this flavour</a>
+                    <Link to="/order" className="btn-primary w-full sm:w-auto">Order this flavour</Link>
                     <a href={WHATSAPP_PLAIN_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Ask on WhatsApp</a>
                   </div>
                 </div>
