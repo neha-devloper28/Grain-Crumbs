@@ -195,9 +195,23 @@ function OrderPage() {
                   <ChipGroup options={["Pickup", "Delivery"]} value={form.delivery} onChange={(v) => update("delivery", v as Delivery)} />
                 </Field>
                 {form.delivery === "Delivery" && (
-                  <Field label="Delivery Address" full>
-                    <textarea required value={form.address} onChange={(e) => update("address", e.target.value)} className={`${inputCls} min-h-24`} placeholder="Full address, landmark, pincode" />
-                  </Field>
+                  <>
+                    <Field label="Delivery Address" full>
+                      <textarea required value={form.address} onChange={(e) => update("address", e.target.value)} className={`${inputCls} min-h-24`} placeholder="Full address, landmark, pincode" />
+                    </Field>
+                    <Field label="Delivery Pincode" full>
+                      <input
+                        inputMode="numeric"
+                        pattern="\d{6}"
+                        maxLength={6}
+                        value={form.pincode}
+                        onChange={(e) => update("pincode", e.target.value.replace(/\D/g, "").slice(0, 6))}
+                        className={inputCls}
+                        placeholder="e.g. 411014"
+                      />
+                      <DeliveryEstimateCard estimate={estimate} pincode={form.pincode} />
+                    </Field>
+                  </>
                 )}
                 <Field label="Occasion">
                   <select value={form.occasion} onChange={(e) => update("occasion", e.target.value)} className={inputCls}>
