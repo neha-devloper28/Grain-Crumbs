@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Gift, Building2, HeartHandshake, Sparkles, Package } from "lucide-react";
 import gifting from "@/assets/gifting.jpg";
 import { Reveal } from "@/components/Reveal";
+import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -39,9 +40,9 @@ function Page() {
               you want to impress. Personalised notes, premium packaging, delivered
               across Pune.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/order" className="btn-primary">Request a Quote</Link>
-              <a href="https://wa.me/918208257574" className="btn-outline">WhatsApp Us</a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">Request a Quote</a>
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">WhatsApp Us</a>
             </div>
           </Reveal>
           <Reveal delay={150}>
@@ -87,11 +88,11 @@ function Page() {
             </p>
           </Reveal>
           <Reveal delay={150}>
-            <div className="flex flex-wrap gap-3 md:justify-end">
-              <Link to="/order" search={{ type: "Bulk / Corporate Order" } as never} className="btn-gold">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-end">
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-gold w-full sm:w-auto">
                 Request a Quote
-              </Link>
-              <a href="mailto:hello@graincrumbs.in" className="btn-outline border-[color:var(--cream)]/40 text-[color:var(--cream)] hover:bg-[color:var(--cream)] hover:text-[color:var(--chocolate-dark)]">
+              </a>
+              <a href="mailto:hello@graincrumbs.in" className="btn-outline w-full border-[color:var(--cream)]/40 text-[color:var(--cream)] hover:bg-[color:var(--cream)] hover:text-[color:var(--chocolate-dark)] sm:w-auto">
                 Email Us
               </a>
             </div>

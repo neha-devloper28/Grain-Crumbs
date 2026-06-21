@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Phone, MapPin, Instagram, Mail, MessageCircle, Clock } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { WHATSAPP_ORDER_URL, WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 const channels = [
-  { icon: MessageCircle, label: "WhatsApp", value: "+91 82082 57574", href: "https://wa.me/918208257574", primary: true },
+  { icon: MessageCircle, label: "WhatsApp", value: "+91 82082 57574", href: WHATSAPP_ORDER_URL, primary: true },
   { icon: Phone, label: "Call", value: "+91 82082 57574", href: "tel:+918208257574" },
   { icon: Instagram, label: "Instagram", value: "@graincrumbs", href: "https://instagram.com/graincrumbs" },
   { icon: Mail, label: "Email", value: "hello@graincrumbs.in", href: "mailto:hello@graincrumbs.in" },
@@ -68,9 +69,9 @@ function Page() {
 
           <Reveal delay={200} className="mt-16 text-center">
             <p className="text-muted-foreground">Ready to place an order?</p>
-            <div className="mt-5 flex flex-wrap justify-center gap-3">
-              <Link to="/order" className="btn-primary">Open Order Form</Link>
-              <a href="https://wa.me/918208257574" className="btn-outline">Quick WhatsApp</a>
+            <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">Order on WhatsApp</a>
+              <a href={WHATSAPP_PLAIN_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Quick WhatsApp</a>
             </div>
           </Reveal>
         </div>

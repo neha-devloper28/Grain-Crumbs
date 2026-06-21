@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.asset.json";
+import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -17,20 +18,20 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="container-prose flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3" aria-label="Grain Crumbs home">
+      <div className="container-prose flex h-16 items-center justify-between gap-3 md:h-20 md:gap-4">
+        <Link to="/" className="flex min-w-0 items-center gap-2.5 md:gap-3" aria-label="Grain Crumbs home">
           <img
             src={logo.url}
             alt="Grain Crumbs"
             width={48}
             height={48}
-            className="h-12 w-12 rounded-full object-contain"
+            className="h-10 w-10 shrink-0 rounded-full object-contain md:h-12 md:w-12"
           />
-          <div className="hidden flex-col sm:flex">
-            <span className="font-display text-lg leading-none tracking-wide">
+          <div className="flex min-w-0 flex-col">
+            <span className="truncate font-display text-base leading-none tracking-wide md:text-lg">
               Grain Crumbs
             </span>
-            <span className="mt-1 text-[10px] tracking-[0.3em] text-muted-foreground">
+            <span className="mt-1 hidden text-[10px] tracking-[0.3em] text-muted-foreground sm:block">
               MILLET BROWNIES · PUNE
             </span>
           </div>
@@ -49,7 +50,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           <a
             href="tel:+918208257574"
             className="hidden items-center gap-2 text-sm text-muted-foreground hover:text-foreground md:inline-flex"
@@ -57,15 +58,20 @@ export function SiteHeader() {
             <Phone className="h-4 w-4" />
             +91 82082 57574
           </a>
-          <Link to="/order" className="btn-gold hidden sm:inline-flex">
+          <a
+            href={WHATSAPP_ORDER_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-gold hidden sm:inline-flex"
+          >
             Order Now
-          </Link>
+          </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-border lg:hidden"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -86,9 +92,15 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <Link to="/order" onClick={() => setOpen(false)} className="btn-gold mt-3">
+            <a
+              href={WHATSAPP_ORDER_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+              className="btn-gold mt-3 w-full"
+            >
               Order Now
-            </Link>
+            </a>
           </nav>
         </div>
       )}

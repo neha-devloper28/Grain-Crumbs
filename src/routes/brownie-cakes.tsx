@@ -1,9 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Cake, Sparkles, MessageSquare, Image as ImageIcon } from "lucide-react";
 import cake from "@/assets/brownie-cake.jpg";
 import walnut from "@/assets/brownie-chocolate-walnut.jpg";
 import berry from "@/assets/brownie-berry.jpg";
 import { Reveal } from "@/components/Reveal";
+import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/brownie-cakes")({
   head: () => ({
@@ -44,9 +45,9 @@ function Page() {
               Birthdays. Anniversaries. Promotions. Baby showers. Celebrate with a brownie
               cake that's rich, indulgent and thoughtfully made — without a grain of maida.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/order" className="btn-primary">Customise Your Cake</Link>
-              <a href="https://wa.me/918208257574" className="btn-outline">Chat on WhatsApp</a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">Customise Your Cake</a>
+              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Chat on WhatsApp</a>
             </div>
           </Reveal>
           <Reveal delay={150}>

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import story from "@/assets/story.jpg";
+import founder from "@/assets/founder.jpg";
 import ingredients from "@/assets/ingredients.jpg";
 import { Reveal } from "@/components/Reveal";
 
@@ -36,18 +36,19 @@ function Page() {
       </section>
 
       <section className="section">
-        <div className="container-prose grid items-center gap-12 md:grid-cols-2">
+        <div className="container-prose grid items-center gap-10 md:grid-cols-2 md:gap-12">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem]">
-              <img src={story} alt="A mother arranging fresh-baked brownies" width={1200} height={1500} className="h-full w-full object-cover" />
+            <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem]">
+              <img src={founder} alt="Ankita Gaikwad, founder of Grain Crumbs" width={1024} height={1280} className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <div className="space-y-5 text-base text-muted-foreground md:text-lg">
+            <p className="eyebrow">Founder · Ankita Gaikwad</p>
+            <div className="mt-4 space-y-4 text-base text-muted-foreground md:space-y-5 md:text-lg">
               <p>
-                Grain Crumbs started in a small kitchen in Kharadi. I wanted a brownie
-                I could happily share with my toddler — without the maida, the refined sugar,
-                the long shelf-life ingredients.
+                Grain Crumbs started when I wanted treats made with better ingredients
+                for my toddler. What began as a personal journey soon became something
+                friends and family kept asking for.
               </p>
               <p>
                 So I started baking with millets — ragi, foxtail, oats, buckwheat — and
@@ -55,12 +56,10 @@ function Page() {
                 be unmistakably brownie.
               </p>
               <p>
-                Friends asked first. Then their friends. Then strangers. Today, every batch
-                still leaves our kitchen the way the very first one did: small, hand-finished,
-                and made with the same care.
+                Today, every batch is still made with the same care.
               </p>
               <p className="font-display text-2xl text-foreground">
-                — Founder, Grain Crumbs
+                — Ankita Gaikwad
               </p>
             </div>
           </Reveal>
