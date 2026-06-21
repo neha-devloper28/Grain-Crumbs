@@ -331,3 +331,82 @@ function ChipGroup<T extends string>({ options, value, onChange }: { options: re
     </div>
   );
 }
+
+function DeliveryEstimateCard({
+  estimate,
+  pincode,
+}: {
+  estimate: ReturnType<typeof estimateDelivery>;
+  pincode: string;
+}) {
+  if (!pincode) return null;
+
+  const headerCls =
+    "mt-4 rounded-2xl border border-[color:var(--gold)]/30 bg-[color:var(--cream-dark)]/40 p-5";
+
+  if (estimate.kind === "invalid") {
+    return (
+      <div className={headerCls}>
+        <p className="text-sm text-muted-foreground">
+          Enter a valid 6-digit pincode to see an estimated delivery charge.
+        </p>
+      </div>
+    );
+  }
+
+  if (estimate.kind === "unknown") {
+    return (
+      <div className={headerCls}>
+        <div className="flex items-center gap-2 text-[color:var(--chocolate-dark)]">
+          <MapPin className="h-4 w-4 text-[color:var(--gold)]" />
+          <p className="eyebrow !mb-0">Estimated Delivery Charge</p>
+        </div>
+        <p className="mt-3 font-display text-2xl">Contact for Quote</p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          We don't have this pincode in our local zones yet — WhatsApp us and we'll
+          confirm the exact charge.
+        </p>
+      </div>
+    );
+  }
+
+  if (estimate.kind === "quote") {
+    return (
+      <div className={headerCls}>
+        <div className="flex items-center gap-2 text-[color:var(--chocolate-dark)]">
+          <MapPin className="h-4 w-4 text-[color:var(--gold)]" />
+          <p className="eyebrow !mb-0">Estimated Delivery Charge</p>
+        </div>
+        <p className="mt-3 font-display text-2xl">Contact for Quote</p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          ~{estimate.km} km from Kharadi · {estimate.label}
+        </p>
+        <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+          Long-distance deliveries are arranged via partner couriers. Final charge
+          depends on exact location and order size.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={headerCls}>
+      <div className="flex items-center gap-2 text-[color:var(--chocolate-dark)]">
+        <MapPin className="h-4 w-4 text-[color:var(--gold)]" />
+        <p className="eyebrow !mb-0">Estimated Delivery Charge</p>
+      </div>
+      <p className="mt-3 font-display text-3xl text-[color:var(--chocolate-dark)]">
+        {estimate.charge}{" "}
+        <span className="text-sm font-normal text-muted-foreground">(Approx.)</span>
+      </p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        ~{estimate.km} km from Kharadi · {estimate.label}
+      </p>
+      <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
+        * Final delivery charges may vary based on exact location, order size, and
+        delivery partner availability. This estimate is shown for reference only and
+        is not added to your order total.
+      </p>
+    </div>
+  );
+}
