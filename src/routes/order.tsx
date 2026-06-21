@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { CheckCircle2, Loader2, MessageCircle } from "lucide-react";
+import { CheckCircle2, Loader2, MapPin, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { supabase } from "@/integrations/supabase/client";
+import { estimateDelivery } from "@/lib/delivery-estimate";
 
 
 export const Route = createFileRoute("/order")({
@@ -39,10 +40,13 @@ function OrderPage() {
     message: "", theme: "",
     delivery: "Pickup" as Delivery,
     address: "",
+    pincode: "",
     occasion: "Birthday",
     date: "",
     notes: "",
   });
+
+  const estimate = estimateDelivery(form.pincode);
 
   const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -191,9 +195,23 @@ function OrderPage() {
                   <ChipGroup options={["Pickup", "Delivery"]} value={form.delivery} onChange={(v) => update("delivery", v as Delivery)} />
                 </Field>
                 {form.delivery === "Delivery" && (
-                  <Field label="Delivery Address" full>
-                    <textarea required value={form.address} onChange={(e) => update("address", e.target.value)} className={`${inputCls} min-h-24`} placeholder="Full address, landmark, pincode" />
-                  </Field>
+                  <>
+                    <Field label="Delivery Address" full>
+                      <textarea required value={form.address} onChange={(e) => update("address", e.target.value)} className={`${inputCls} min-h-24`} placeholder="Full address, landmark, pincode" />
+                    </Field>
+                    <Field label="Delivery Pincode" full>
+                      <input
+                        inputMode="numeric"
+                        pattern="\d{6}"
+                        maxLength={6}
+                        value={form.pincode}
+                        onChange={(e) => update("pincode", e.target.value.replace(/\D/g, "").slice(0, 6))}
+                        className={inputCls}
+                        placeholder="e.g. 411014"
+                      />
+                      <DeliveryEstimateCard estimate={estimate} pincode={form.pincode} />
+                    </Field>
+                  </>
                 )}
                 <Field label="Occasion">
                   <select value={form.occasion} onChange={(e) => update("occasion", e.target.value)} className={inputCls}>
@@ -310,6 +328,85 @@ function ChipGroup<T extends string>({ options, value, onChange }: { options: re
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function DeliveryEstimateCard({
+  estimate,
+  pincode,
+}: {
+  estimate: ReturnType<typeof estimateDelivery>;
+  pincode: string;
+}) {
+  if (!pincode) return null;
+
+  const headerCls =
+    "mt-4 rounded-2xl border border-[color:var(--gold)]/30 bg-[color:var(--cream-dark)]/40 p-5";
+
+  if (estimate.kind === "invalid") {
+    return (
+      <div className={headerCls}>
+        <p className="text-sm text-muted-foreground">
+          Enter a valid 6-digit pincode to see an estimated delivery charge.
+        </p>
+      </div>
+    );
+  }
+
+  if (estimate.kind === "unknown") {
+    return (
+      <div className={headerCls}>
+        <div className="flex items-center gap-2 text-[color:var(--chocolate-dark)]">
+          <MapPin className="h-4 w-4 text-[color:var(--gold)]" />
+          <p className="eyebrow !mb-0">Estimated Delivery Charge</p>
+        </div>
+        <p className="mt-3 font-display text-2xl">Contact for Quote</p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          We don't have this pincode in our local zones yet — WhatsApp us and we'll
+          confirm the exact charge.
+        </p>
+      </div>
+    );
+  }
+
+  if (estimate.kind === "quote") {
+    return (
+      <div className={headerCls}>
+        <div className="flex items-center gap-2 text-[color:var(--chocolate-dark)]">
+          <MapPin className="h-4 w-4 text-[color:var(--gold)]" />
+          <p className="eyebrow !mb-0">Estimated Delivery Charge</p>
+        </div>
+        <p className="mt-3 font-display text-2xl">Contact for Quote</p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          ~{estimate.km} km from Kharadi · {estimate.label}
+        </p>
+        <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+          Long-distance deliveries are arranged via partner couriers. Final charge
+          depends on exact location and order size.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={headerCls}>
+      <div className="flex items-center gap-2 text-[color:var(--chocolate-dark)]">
+        <MapPin className="h-4 w-4 text-[color:var(--gold)]" />
+        <p className="eyebrow !mb-0">Estimated Delivery Charge</p>
+      </div>
+      <p className="mt-3 font-display text-3xl text-[color:var(--chocolate-dark)]">
+        {estimate.charge}{" "}
+        <span className="text-sm font-normal text-muted-foreground">(Approx.)</span>
+      </p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        ~{estimate.km} km from Kharadi · {estimate.label}
+      </p>
+      <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
+        * Final delivery charges may vary based on exact location, order size, and
+        delivery partner availability. This estimate is shown for reference only and
+        is not added to your order total.
+      </p>
     </div>
   );
 }
