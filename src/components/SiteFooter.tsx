@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Phone, MapPin, Mail } from "lucide-react";
 import logo from "@/assets/logo.asset.json";
-import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 
 export function SiteFooter() {
   return (

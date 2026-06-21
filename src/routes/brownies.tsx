@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { flavours } from "@/lib/flavours";
 import { Reveal } from "@/components/Reveal";
-import { WHATSAPP_ORDER_URL, WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
+import { WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/brownies")({
   head: () => ({

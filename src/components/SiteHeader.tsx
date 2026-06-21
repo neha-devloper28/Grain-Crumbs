@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.asset.json";
-import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 
 const nav = [
   { to: "/", label: "Home" },
