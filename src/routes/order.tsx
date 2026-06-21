@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { supabase } from "@/integrations/supabase/client";
+
 
 export const Route = createFileRoute("/order")({
   head: () => ({
