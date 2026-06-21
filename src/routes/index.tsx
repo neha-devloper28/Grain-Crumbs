@@ -79,9 +79,9 @@ function Hero() {
           </Reveal>
           <Reveal delay={360}>
             <div className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap md:mt-9">
-              <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-primary w-full sm:w-auto">
+              <Link to="/order" className="btn-primary w-full sm:w-auto">
                 Order Now <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
               <Link to="/brownies" className="btn-outline w-full sm:w-auto">View Menu</Link>
               <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="btn-outline w-full sm:w-auto">Request a Quote</a>
               <Link to="/brownie-cakes" className="btn-outline w-full sm:w-auto">Customise Your Cake</Link>
@@ -258,9 +258,9 @@ function Collections() {
                 </ul>
                 <div className="mt-auto pt-8">
                   {c.available ? (
-                    <a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium tracking-wide text-[color:var(--gold-soft)] hover:text-[color:var(--gold)]">
+                    <Link to="/order" className="inline-flex items-center gap-2 text-sm font-medium tracking-wide text-[color:var(--gold-soft)] hover:text-[color:var(--gold)]">
                       Order the classic <ArrowRight className="h-4 w-4" />
-                    </a>
+                    </Link>
                   ) : (
                     <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Coming soon</span>
                   )}
