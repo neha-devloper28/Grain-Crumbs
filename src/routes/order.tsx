@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { supabase } from "@/integrations/supabase/client";
+
 
 export const Route = createFileRoute("/order")({
   head: () => ({
@@ -68,11 +70,32 @@ function OrderPage() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate request (Google Sheets integration would replace this).
-    await new Promise((r) => setTimeout(r, 700));
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const { error } = await supabase.from("orders").insert({
+        name: form.name,
+        phone: form.phone,
+        email: form.email || null,
+        product_type: form.type,
+        flavour: form.flavour,
+        weight: form.weight,
+        cake_message: form.message || null,
+        theme: form.theme || null,
+        delivery: form.delivery,
+        address: form.delivery === "Delivery" ? form.address : null,
+        occasion: form.occasion,
+        date_required: form.date || null,
+        notes: form.notes || null,
+      });
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      alert("Could not submit. Please try WhatsApp instead.");
+    } finally {
+      setSubmitting(false);
+    }
   };
+
 
   if (submitted) {
     return (
