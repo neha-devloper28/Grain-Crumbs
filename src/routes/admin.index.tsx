@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Loader2, LogOut, Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/admin/")({
   head: () => ({ meta: [{ title: "Admin Dashboard — Grain Crumbs" }, { name: "robots", content: "noindex" }] }),
   component: AdminDashboard,
 });
