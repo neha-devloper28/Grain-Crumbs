@@ -57,14 +57,12 @@ export function SiteHeader() {
             <Phone className="h-4 w-4" />
             +91 82082 57574
           </a>
-          <a
-            href={WHATSAPP_ORDER_URL}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/order"
             className="btn-gold hidden sm:inline-flex"
           >
             Order Now
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -91,15 +89,13 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <a
-              href={WHATSAPP_ORDER_URL}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/order"
               onClick={() => setOpen(false)}
               className="btn-gold mt-3 w-full"
             >
               Order Now
-            </a>
+            </Link>
           </nav>
         </div>
       )}

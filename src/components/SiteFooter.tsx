@@ -29,7 +29,7 @@ export function SiteFooter() {
             <li><Link to="/brownie-cakes" className="underline-link">Brownie Cakes</Link></li>
             <li><Link to="/gifting" className="underline-link">Gifting</Link></li>
             <li><Link to="/about" className="underline-link">Our Story</Link></li>
-            <li><a href={WHATSAPP_ORDER_URL} target="_blank" rel="noreferrer" className="underline-link">Order Now</a></li>
+            <li><Link to="/order" className="underline-link">Order Now</Link></li>
           </ul>
         </div>
 
