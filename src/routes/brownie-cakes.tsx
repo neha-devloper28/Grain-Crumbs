@@ -101,12 +101,12 @@ function Page() {
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem]">
-                <img src={walnut} alt="Brownie cake stack" loading="lazy" width={1024} height={1280} className="h-full w-full object-cover" />
+                <img src={stand} alt="Grain Crumbs millet brownies on a wooden cake stand" loading="lazy" width={1024} height={1280} className="h-full w-full object-cover" />
               </div>
             </Reveal>
             <Reveal delay={120}>
               <div className="relative overflow-hidden rounded-[2rem]">
-                <img src={berry} alt="Mixed berry brownie" loading="lazy" width={1024} height={1280} className="h-full w-full object-cover" />
+                <img src={leaf} alt="Hand-piped brownie in Grain Crumbs packaging" loading="lazy" width={1024} height={1280} className="h-full w-full object-cover" />
               </div>
             </Reveal>
           </div>
