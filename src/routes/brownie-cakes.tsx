@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Cake, Sparkles, MessageSquare, Image as ImageIcon } from "lucide-react";
 import cake from "@/assets/brownie-cake.jpg";
-import walnut from "@/assets/brownie-chocolate-walnut.jpg";
-import berry from "@/assets/brownie-berry.jpg";
+import standAsset from "@/assets/brownie-stand.png.asset.json";
+import leafAsset from "@/assets/brownie-cream-leaf.png.asset.json";
+const stand = standAsset.url;
+const leaf = leafAsset.url;
 import { Reveal } from "@/components/Reveal";
 import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 
