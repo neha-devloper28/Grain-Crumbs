@@ -57,7 +57,10 @@ function BrowniesPage() {
                 <div>
                   <p className="eyebrow">{`0${i + 1}`}</p>
                   <h2 className="mt-3 font-display text-4xl md:text-5xl">{f.name}</h2>
-                  <p className="mt-3 italic text-[color:var(--gold)]">{f.tagline}</p>
+                  <div className="mt-3 flex flex-wrap items-baseline gap-3">
+                    <p className="italic text-[color:var(--gold)]">{f.tagline}</p>
+                    <span className="font-display text-2xl text-[color:var(--chocolate)]">₹{f.price}</span>
+                  </div>
                   <p className="mt-5 max-w-md text-muted-foreground">{f.description}</p>
                   <ul className="mt-6 flex flex-wrap gap-2">
                     {f.notes.map((n) => (

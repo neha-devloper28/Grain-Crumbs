@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Gift, Building2, HeartHandshake, Sparkles, Package } from "lucide-react";
-import gifting from "@/assets/gifting.jpg";
+import giftingAsset from "@/assets/gifting-sweet-gestures.png.asset.json";
+const gifting = giftingAsset.url;
 import { Reveal } from "@/components/Reveal";
 import { WHATSAPP_ORDER_URL } from "@/lib/whatsapp";
 

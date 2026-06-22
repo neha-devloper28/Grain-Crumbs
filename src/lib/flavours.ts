@@ -12,44 +12,19 @@ export type Flavour = {
   description: string;
   image: string;
   notes: string[];
+  price: number;
 };
 
 export const flavours: Flavour[] = [
   {
-    slug: "chocolate-walnut",
-    name: "Chocolate Walnut",
-    tagline: "The signature classic.",
+    slug: "mixed-berry-jam",
+    name: "Mixed Berry Jam",
+    tagline: "Bright, tart, beautiful.",
     description:
-      "Deeply fudgy with toasted walnuts folded through a couverture chocolate base.",
-    image: walnutAsset.url,
-    notes: ["Couverture chocolate", "California walnuts", "Slow-baked"],
-  },
-  {
-    slug: "cappuccino-walnut",
-    name: "Cappuccino Walnut",
-    tagline: "Espresso meets indulgence.",
-    description:
-      "Single-origin coffee swirled into rich chocolate, finished with crunchy walnut.",
-    image: cappuccinoAsset.url,
-    notes: ["Arabica espresso", "Walnut", "Soft centre"],
-  },
-  {
-    slug: "cream-cheese-filling",
-    name: "Cream Cheese Filling",
-    tagline: "Molten heart, gentle tang.",
-    description:
-      "Cream cheese ribboned through the centre — a melt of tang against deep chocolate.",
-    image: creamAsset.url,
-    notes: ["Cream cheese core", "Slow-baked", "Soft middle"],
-  },
-  {
-    slug: "hazelnut-spread-filling",
-    name: "Hazelnut Spread Filling",
-    tagline: "Roasted, nutty, luxurious.",
-    description:
-      "Roasted hazelnut praline spread, folded into a millet brownie that crackles on top.",
-    image: hazelnutAsset.url,
-    notes: ["Praline core", "Roasted hazelnut", "Crackle top"],
+      "Slow-cooked seasonal berries spooned over a fudgy millet brownie. The brightest finish.",
+    image: berryAsset.url,
+    notes: ["Slow-cooked berries", "No artificial colour", "Limited batches"],
+    price: 109,
   },
   {
     slug: "coconut-bounty",
@@ -59,14 +34,46 @@ export const flavours: Flavour[] = [
       "Toasted coconut layered with chocolate ganache — a tribute to the bounty bar, grown up.",
     image: coconutAsset.url,
     notes: ["Toasted coconut", "Ganache drizzle", "Layered"],
+    price: 119,
   },
   {
-    slug: "mixed-berry-jam",
-    name: "Mixed Berry Jam",
-    tagline: "Bright, tart, beautiful.",
+    slug: "chocolate-walnut",
+    name: "Chocolate Walnut",
+    tagline: "The signature classic.",
     description:
-      "Slow-cooked seasonal berries spooned over a fudgy millet brownie. The brightest finish.",
-    image: berryAsset.url,
-    notes: ["Slow-cooked berries", "No artificial colour", "Limited batches"],
+      "Deeply fudgy with toasted walnuts folded through a couverture chocolate base.",
+    image: walnutAsset.url,
+    notes: ["Couverture chocolate", "California walnuts", "Slow-baked"],
+    price: 129,
+  },
+  {
+    slug: "cappuccino-walnut",
+    name: "Cappuccino Walnut",
+    tagline: "Espresso meets indulgence.",
+    description:
+      "Single-origin coffee swirled into rich chocolate, finished with crunchy walnut.",
+    image: cappuccinoAsset.url,
+    notes: ["Arabica espresso", "Walnut", "Soft centre"],
+    price: 129,
+  },
+  {
+    slug: "cream-cheese-filling",
+    name: "Cream Cheese Filling",
+    tagline: "Molten heart, gentle tang.",
+    description:
+      "Cream cheese ribboned through the centre — a melt of tang against deep chocolate.",
+    image: creamAsset.url,
+    notes: ["Cream cheese core", "Slow-baked", "Soft middle"],
+    price: 149,
+  },
+  {
+    slug: "hazelnut-spread-filling",
+    name: "Hazelnut Spread Filling",
+    tagline: "Roasted, nutty, luxurious.",
+    description:
+      "Roasted hazelnut praline spread, folded into a millet brownie that crackles on top.",
+    image: hazelnutAsset.url,
+    notes: ["Praline core", "Roasted hazelnut", "Crackle top"],
+    price: 159,
   },
 ];
