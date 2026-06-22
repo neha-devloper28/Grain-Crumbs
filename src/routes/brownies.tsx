@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { flavours } from "@/lib/flavours";
 import { Reveal } from "@/components/Reveal";
 import { WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
+import trayAsset from "@/assets/brownie-tray.png.asset.json";
+const trayImg = trayAsset.url;
 
 export const Route = createFileRoute("/brownies")({
   head: () => ({
@@ -18,8 +20,16 @@ export const Route = createFileRoute("/brownies")({
 function BrowniesPage() {
   return (
     <>
-      <section className="border-b border-border/60 bg-[color:var(--cream-dark)]/40">
-        <div className="container-prose py-20 text-center md:py-28">
+      <section className="relative overflow-hidden border-b border-border/60 bg-[color:var(--cream-dark)]/40">
+        <div className="absolute inset-0">
+          <img
+            src={trayImg}
+            alt="Freshly baked Grain Crumbs millet brownies in a tray"
+            className="h-full w-full object-cover opacity-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--cream)]/60 via-[color:var(--cream)]/80 to-[color:var(--cream)]" />
+        </div>
+        <div className="container-prose relative py-20 text-center md:py-28">
           <p className="divider-gold eyebrow">The Menu</p>
           <h1 className="mt-5 font-display text-5xl md:text-6xl">Signature Brownies</h1>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
