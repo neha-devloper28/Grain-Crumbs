@@ -1,9 +1,9 @@
-import walnut from "@/assets/brownie-chocolate-walnut.jpg";
-import cappuccino from "@/assets/brownie-cappuccino.jpg";
-import cream from "@/assets/brownie-cream-cheese.jpg";
-import hazelnut from "@/assets/brownie-hazelnut.jpg";
-import coconut from "@/assets/brownie-coconut.jpg";
-import berry from "@/assets/brownie-berry.jpg";
+import walnutAsset from "@/assets/brownie-chocolate-walnut.png.asset.json";
+import cappuccinoAsset from "@/assets/brownie-cappuccino.png.asset.json";
+import creamAsset from "@/assets/brownie-cream-cheese.png.asset.json";
+import hazelnutAsset from "@/assets/brownie-hazelnut.png.asset.json";
+import coconutAsset from "@/assets/brownie-coconut.png.asset.json";
+import berryAsset from "@/assets/brownie-berry.png.asset.json";
 
 export type Flavour = {
   slug: string;
@@ -21,7 +21,7 @@ export const flavours: Flavour[] = [
     tagline: "The signature classic.",
     description:
       "Deeply fudgy with toasted walnuts folded through a couverture chocolate base.",
-    image: walnut,
+    image: walnutAsset.url,
     notes: ["Couverture chocolate", "California walnuts", "Slow-baked"],
   },
   {
@@ -30,7 +30,7 @@ export const flavours: Flavour[] = [
     tagline: "Espresso meets indulgence.",
     description:
       "Single-origin coffee swirled into rich chocolate, finished with crunchy walnut.",
-    image: cappuccino,
+    image: cappuccinoAsset.url,
     notes: ["Arabica espresso", "Walnut", "Soft centre"],
   },
   {
@@ -39,7 +39,7 @@ export const flavours: Flavour[] = [
     tagline: "Molten heart, gentle tang.",
     description:
       "Cream cheese ribboned through the centre — a melt of tang against deep chocolate.",
-    image: cream,
+    image: creamAsset.url,
     notes: ["Cream cheese core", "Slow-baked", "Soft middle"],
   },
   {
@@ -48,7 +48,7 @@ export const flavours: Flavour[] = [
     tagline: "Roasted, nutty, luxurious.",
     description:
       "Roasted hazelnut praline spread, folded into a millet brownie that crackles on top.",
-    image: hazelnut,
+    image: hazelnutAsset.url,
     notes: ["Praline core", "Roasted hazelnut", "Crackle top"],
   },
   {
@@ -57,7 +57,7 @@ export const flavours: Flavour[] = [
     tagline: "Tropical, glossy, generous.",
     description:
       "Toasted coconut layered with chocolate ganache — a tribute to the bounty bar, grown up.",
-    image: coconut,
+    image: coconutAsset.url,
     notes: ["Toasted coconut", "Ganache drizzle", "Layered"],
   },
   {
@@ -66,7 +66,7 @@ export const flavours: Flavour[] = [
     tagline: "Bright, tart, beautiful.",
     description:
       "Slow-cooked seasonal berries spooned over a fudgy millet brownie. The brightest finish.",
-    image: berry,
+    image: berryAsset.url,
     notes: ["Slow-cooked berries", "No artificial colour", "Limited batches"],
   },
 ];
