@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { flavours } from "@/lib/flavours";
 import { Reveal } from "@/components/Reveal";
 import { WHATSAPP_PLAIN_URL } from "@/lib/whatsapp";
+import trayAsset from "@/assets/brownie-tray.png.asset.json";
+const trayImg = trayAsset.url;
 
 export const Route = createFileRoute("/brownies")({
   head: () => ({
