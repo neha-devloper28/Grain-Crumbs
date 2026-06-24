@@ -140,9 +140,15 @@ function OrderPage() {
                 <CheckCircle2 className="h-8 w-8" />
               </div>
               <h1 className="mt-6 font-display text-4xl md:text-5xl">Thank you!</h1>
+              {orderNumber !== null && (
+                <div className="mx-auto mt-6 inline-flex flex-col items-center rounded-2xl border border-[color:var(--gold)]/40 bg-[color:var(--cream-dark)]/40 px-6 py-4">
+                  <span className="eyebrow !mb-1">Your Order Number</span>
+                  <span className="font-display text-3xl text-[color:var(--chocolate-dark)]">#{orderNumber}</span>
+                </div>
+              )}
               <p className="mt-4 text-muted-foreground">
-                We've received your request and will contact you shortly to confirm
-                availability, pricing and customisation details.
+                We've received your request and a confirmation email is on its way.
+                We'll contact you shortly to confirm availability, pricing and customisation details.
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 Prefer to chat? Send the same details on WhatsApp for the fastest reply.
