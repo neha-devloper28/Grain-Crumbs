@@ -27,6 +27,7 @@ export type Database = {
           name: string
           notes: string | null
           occasion: string | null
+          order_number: number
           phone: string
           product_type: string
           status: Database["public"]["Enums"]["order_status"]
@@ -46,6 +47,7 @@ export type Database = {
           name: string
           notes?: string | null
           occasion?: string | null
+          order_number?: number
           phone: string
           product_type: string
           status?: Database["public"]["Enums"]["order_status"]
@@ -65,6 +67,7 @@ export type Database = {
           name?: string
           notes?: string | null
           occasion?: string | null
+          order_number?: number
           phone?: string
           product_type?: string
           status?: Database["public"]["Enums"]["order_status"]
