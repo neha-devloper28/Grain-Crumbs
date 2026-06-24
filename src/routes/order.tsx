@@ -4,6 +4,11 @@ import { CheckCircle2, Loader2, MapPin, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { supabase } from "@/integrations/supabase/client";
 import { estimateDelivery } from "@/lib/delivery-estimate";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_uzxszot";
+const EMAILJS_TEMPLATE_ID = "template_9mm79jb";
+const EMAILJS_PUBLIC_KEY = "FVFudd1L2Yxx2YziQ";
 
 
 export const Route = createFileRoute("/order")({
