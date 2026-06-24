@@ -36,6 +36,7 @@ const occasions = ["Birthday", "Anniversary", "Corporate Event", "Gift", "Other"
 
 function OrderPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [orderNumber, setOrderNumber] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "", phone: "", email: "",
