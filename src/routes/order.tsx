@@ -81,10 +81,10 @@ function OrderPage() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("orders").insert({
+      const { data, error } = await supabase.from("orders").insert({
         name: form.name,
         phone: form.phone,
-        email: form.email || null,
+        email: form.email,
         product_type: form.type,
         flavour: form.flavour,
         weight: form.weight,
@@ -95,8 +95,31 @@ function OrderPage() {
         occasion: form.occasion,
         date_required: form.date || null,
         notes: form.notes || null,
-      });
+      }).select("order_number").single();
       if (error) throw error;
+      const newOrderNumber = data?.order_number ?? null;
+      setOrderNumber(newOrderNumber);
+
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            to_email: form.email,
+            customer_name: form.name,
+            order_number: String(newOrderNumber ?? ""),
+            product_type: form.type,
+            delivery: form.delivery === "Delivery"
+              ? `Delivery to ${form.address}`
+              : "Pickup",
+            date_required: form.date || "To be confirmed",
+          },
+          { publicKey: EMAILJS_PUBLIC_KEY },
+        );
+      } catch (emailErr) {
+        console.error("EmailJS send failed", emailErr);
+      }
+
       setSubmitted(true);
     } catch (err) {
       console.error(err);
