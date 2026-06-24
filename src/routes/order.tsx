@@ -4,6 +4,11 @@ import { CheckCircle2, Loader2, MapPin, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { supabase } from "@/integrations/supabase/client";
 import { estimateDelivery } from "@/lib/delivery-estimate";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_uzxszot";
+const EMAILJS_TEMPLATE_ID = "template_9mm79jb";
+const EMAILJS_PUBLIC_KEY = "FVFudd1L2Yxx2YziQ";
 
 
 export const Route = createFileRoute("/order")({
@@ -31,6 +36,7 @@ const occasions = ["Birthday", "Anniversary", "Corporate Event", "Gift", "Other"
 
 function OrderPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [orderNumber, setOrderNumber] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "", phone: "", email: "",
@@ -75,10 +81,10 @@ function OrderPage() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("orders").insert({
+      const { data, error } = await supabase.from("orders").insert({
         name: form.name,
         phone: form.phone,
-        email: form.email || null,
+        email: form.email,
         product_type: form.type,
         flavour: form.flavour,
         weight: form.weight,
@@ -89,8 +95,31 @@ function OrderPage() {
         occasion: form.occasion,
         date_required: form.date || null,
         notes: form.notes || null,
-      });
+      }).select("order_number").single();
       if (error) throw error;
+      const newOrderNumber = data?.order_number ?? null;
+      setOrderNumber(newOrderNumber);
+
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            to_email: form.email,
+            customer_name: form.name,
+            order_number: String(newOrderNumber ?? ""),
+            product_type: form.type,
+            delivery: form.delivery === "Delivery"
+              ? `Delivery to ${form.address}`
+              : "Pickup",
+            date_required: form.date || "To be confirmed",
+          },
+          { publicKey: EMAILJS_PUBLIC_KEY },
+        );
+      } catch (emailErr) {
+        console.error("EmailJS send failed", emailErr);
+      }
+
       setSubmitted(true);
     } catch (err) {
       console.error(err);
@@ -111,9 +140,15 @@ function OrderPage() {
                 <CheckCircle2 className="h-8 w-8" />
               </div>
               <h1 className="mt-6 font-display text-4xl md:text-5xl">Thank you!</h1>
+              {orderNumber !== null && (
+                <div className="mx-auto mt-6 inline-flex flex-col items-center rounded-2xl border border-[color:var(--gold)]/40 bg-[color:var(--cream-dark)]/40 px-6 py-4">
+                  <span className="eyebrow !mb-1">Your Order Number</span>
+                  <span className="font-display text-3xl text-[color:var(--chocolate-dark)]">#{orderNumber}</span>
+                </div>
+              )}
               <p className="mt-4 text-muted-foreground">
-                We've received your request and will contact you shortly to confirm
-                availability, pricing and customisation details.
+                We've received your request and a confirmation email is on its way.
+                We'll contact you shortly to confirm availability, pricing and customisation details.
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 Prefer to chat? Send the same details on WhatsApp for the fastest reply.
@@ -159,8 +194,8 @@ function OrderPage() {
                 <Field label="Mobile Number" required>
                   <input required type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className={inputCls} placeholder="+91 9XXXX XXXXX" />
                 </Field>
-                <Field label="Email (optional)">
-                  <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} placeholder="you@example.com" />
+                <Field label="Email" required>
+                  <input required type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} placeholder="you@example.com" />
                 </Field>
               </Fieldset>
 
