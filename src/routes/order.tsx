@@ -194,8 +194,8 @@ function OrderPage() {
                 <Field label="Mobile Number" required>
                   <input required type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className={inputCls} placeholder="+91 9XXXX XXXXX" />
                 </Field>
-                <Field label="Email (optional)">
-                  <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} placeholder="you@example.com" />
+                <Field label="Email" required>
+                  <input required type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} placeholder="you@example.com" />
                 </Field>
               </Fieldset>
 
