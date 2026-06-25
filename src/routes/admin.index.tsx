@@ -1,6 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Loader2, LogOut, Search } from "lucide-react";
+import { KeyRound, Loader2, LogOut, Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/")({
@@ -120,7 +120,10 @@ function AdminDashboard() {
             <h1 className="mt-3 font-display text-4xl md:text-5xl">Orders</h1>
             <p className="mt-2 text-sm text-muted-foreground">{filtered.length} of {orders.length} enquiries</p>
           </div>
-          <button onClick={signOut} className="btn-outline"><LogOut className="h-4 w-4" /> Sign out</button>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/admin/change-password" className="btn-outline"><KeyRound className="h-4 w-4" /> Change password</Link>
+            <button onClick={signOut} className="btn-outline"><LogOut className="h-4 w-4" /> Sign out</button>
+          </div>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
