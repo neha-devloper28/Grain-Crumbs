@@ -10,6 +10,7 @@ export const Route = createFileRoute("/admin/change-password")({
 });
 
 const ADMIN_NOTIFY_EMAIL = "thegraincrumbs@gmail.com";
+const OTP_RECIPIENT_EMAIL = "ankita.junankar@gmail.com";
 const EMAILJS_SERVICE_ID = "service_uzxszot";
 const EMAILJS_TEMPLATE_ID = "template_9mm79jb";
 const EMAILJS_PUBLIC_KEY = "FVFudd1L2Yxx2YziQ";
@@ -87,12 +88,28 @@ function ChangePassword() {
       const otp = generateOtp();
       const expiresAt = Date.now() + OTP_TTL_MS;
 
+      // 1) Security alert to the business inbox (no OTP)
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
           to_email: ADMIN_NOTIFY_EMAIL,
-          customer_name: "Admin",
+          customer_name: "Grain Crumbs Team",
+          order_number: "—",
+          product_type: "Security Alert: Admin Password Change Attempt",
+          delivery: `Someone is attempting to change the admin password for ${userEmail}. If this wasn't you, please secure the account immediately.`,
+          date_required: new Date().toLocaleString(),
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+
+      // 2) OTP sent only to the owner's personal inbox
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          to_email: OTP_RECIPIENT_EMAIL,
+          customer_name: "Ankita",
           order_number: otp,
           product_type: "Admin Password Change — Verification Code",
           delivery: `Use this 6-digit code to confirm the password change for ${userEmail}.`,
@@ -104,7 +121,7 @@ function ChangePassword() {
       setSentOtp(otp);
       setOtpExpiresAt(expiresAt);
       setStep("verify");
-      setInfo(`Verification code sent to ${ADMIN_NOTIFY_EMAIL}. It expires in 10 minutes.`);
+      setInfo(`Verification code sent to ${OTP_RECIPIENT_EMAIL}. It expires in 10 minutes.`);
     } catch (err) {
       console.error("OTP send failed", err);
       setError("Could not send verification email. Please try again.");
@@ -158,8 +175,8 @@ function ChangePassword() {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          to_email: ADMIN_NOTIFY_EMAIL,
-          customer_name: "Admin",
+          to_email: OTP_RECIPIENT_EMAIL,
+          customer_name: "Ankita",
           order_number: otp,
           product_type: "Admin Password Change — Verification Code (resent)",
           delivery: `Use this 6-digit code to confirm the password change for ${userEmail}.`,
@@ -169,7 +186,7 @@ function ChangePassword() {
       );
       setSentOtp(otp);
       setOtpExpiresAt(expiresAt);
-      setInfo(`A new code was sent to ${ADMIN_NOTIFY_EMAIL}.`);
+      setInfo(`A new code was sent to ${OTP_RECIPIENT_EMAIL}.`);
     } catch (err) {
       console.error("Resend failed", err);
       setError("Could not resend code.");
@@ -196,8 +213,9 @@ function ChangePassword() {
           <p className="divider-gold eyebrow">Admin</p>
           <h1 className="mt-3 font-display text-4xl md:text-5xl">Change Password</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Signed in as <span className="font-medium">{userEmail}</span>. A verification code will be sent to{" "}
-            <span className="font-medium">{ADMIN_NOTIFY_EMAIL}</span>.
+            Signed in as <span className="font-medium">{userEmail}</span>. A security alert will be sent to{" "}
+            <span className="font-medium">{ADMIN_NOTIFY_EMAIL}</span> and the verification code will be sent to{" "}
+            <span className="font-medium">{OTP_RECIPIENT_EMAIL}</span>.
           </p>
         </div>
 
