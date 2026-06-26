@@ -66,13 +66,23 @@ function AdminLogin() {
               {busy ? <><Loader2 className="h-4 w-4 animate-spin" /> Please wait</> : mode === "signin" ? "Sign in" : "Create & sign in"}
             </button>
           </form>
-          <button
-            type="button"
-            onClick={() => { setMode(mode === "signin" ? "bootstrap" : "signin"); setErr(null); }}
-            className="mt-6 text-xs uppercase tracking-[0.18em] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
-          >
-            {mode === "signin" ? "First time? Create admin account" : "Back to sign in"}
-          </button>
+          <div className="mt-6 flex items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => { setMode(mode === "signin" ? "bootstrap" : "signin"); setErr(null); }}
+              className="text-xs uppercase tracking-[0.18em] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+            >
+              {mode === "signin" ? "First time? Create admin account" : "Back to sign in"}
+            </button>
+            {mode === "signin" && (
+              <Link
+                to="/admin/forgot-password"
+                className="text-xs uppercase tracking-[0.18em] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                Forgot password?
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </section>
