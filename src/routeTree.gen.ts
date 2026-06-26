@@ -19,6 +19,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminForgotPasswordRouteImport } from './routes/admin.forgot-password'
 import { Route as AdminChangePasswordRouteImport } from './routes/admin.change-password'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -71,6 +72,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminForgotPasswordRoute = AdminForgotPasswordRouteImport.update({
+  id: '/admin/forgot-password',
+  path: '/admin/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminChangePasswordRoute = AdminChangePasswordRouteImport.update({
   id: '/admin/change-password',
   path: '/admin/change-password',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/order': typeof OrderRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/change-password': typeof AdminChangePasswordRoute
+  '/admin/forgot-password': typeof AdminForgotPasswordRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/order': typeof OrderRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/change-password': typeof AdminChangePasswordRoute
+  '/admin/forgot-password': typeof AdminForgotPasswordRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/order': typeof OrderRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/change-password': typeof AdminChangePasswordRoute
+  '/admin/forgot-password': typeof AdminForgotPasswordRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/order'
     | '/sitemap.xml'
     | '/admin/change-password'
+    | '/admin/forgot-password'
     | '/admin/login'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/order'
     | '/sitemap.xml'
     | '/admin/change-password'
+    | '/admin/forgot-password'
     | '/admin/login'
     | '/admin'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/order'
     | '/sitemap.xml'
     | '/admin/change-password'
+    | '/admin/forgot-password'
     | '/admin/login'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   OrderRoute: typeof OrderRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminChangePasswordRoute: typeof AdminChangePasswordRoute
+  AdminForgotPasswordRoute: typeof AdminForgotPasswordRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/forgot-password': {
+      id: '/admin/forgot-password'
+      path: '/admin/forgot-password'
+      fullPath: '/admin/forgot-password'
+      preLoaderRoute: typeof AdminForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/change-password': {
       id: '/admin/change-password'
       path: '/admin/change-password'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrderRoute: OrderRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminChangePasswordRoute: AdminChangePasswordRoute,
+  AdminForgotPasswordRoute: AdminForgotPasswordRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
